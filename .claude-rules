@@ -1,9 +1,53 @@
-<rule name="git_commit_messages">
-  Use Conventional Commit style:
-  - Format: <type>(scope): <summary>
-  - Types: feat, fix, refactor, docs, style, test, chore, perf
-  - Summary <= 50 chars, imperative mood
-  - Wrap body at 72 chars
-  - Explain "what + why" in body
-  - Add BREAKING CHANGE footer if needed
+<rule name="git_branch_and_commit_style">
+  ## Branch Naming
+  Always name branches using the format:
+    <type>/<short-description>
+
+  - <type> must be one of:
+      feat  → new feature
+      fix   → bug fix
+      refactor → code refactoring
+      chore → tooling, CI/CD, dependencies, configs
+      docs  → documentation only
+      test  → tests only
+      perf  → performance improvements
+
+  - <short-description>:
+      * All lowercase
+      * Words separated by hyphens
+      * Concise but descriptive (3–5 words ideally)
+      * No issue numbers, dates, or uppercase letters
+
+  Examples:
+    feat/login-button
+    fix/crash-on-empty-upload
+    refactor/db-query-builder
+    chore/update-ci-workflow
+    docs/api-authentication-guide
+
+  ## Commit Messages
+  Follow Conventional Commits format:
+    <type>(scope): <summary>
+
+    [body]
+
+    [footer]
+
+  - The <type> in the commit message must match the <type> in the branch name.
+  - Use the <short-description> from the branch to decide on the <scope> or
+    guide the <summary>.
+  - Subject line ≤ 50 chars, imperative mood.
+  - Wrap body at 72 chars.
+  - Body explains "what + why", not just the diff.
+  - Footer for BREAKING CHANGE or issue refs.
+
+  ## Examples
+  Branch: feat/login-button
+  Commit: feat(ui): add login button component
+
+  Branch: fix/crash-on-empty-upload
+  Commit: fix(upload): prevent crash on empty file uploads
+
+  Branch: chore/update-ci-workflow
+  Commit: chore(ci): update GitHub Actions workflow to cache deps
 </rule>
