@@ -54,3 +54,14 @@ const songs = [
 //     year: 1986,
 //   },
 // ];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const tbody = document.getElementById('songs-tbody');
+    
+    songs.forEach(song => {
+        const row = tbody.insertRow();
+        row.insertCell().textContent = song.name;
+        row.insertCell().textContent = song.artist;
+        row.insertCell().textContent = song.year;
+    });
+});
