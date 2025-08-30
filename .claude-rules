@@ -51,3 +51,70 @@
   Branch: chore/update-ci-workflow
   Commit: chore(ci): update GitHub Actions workflow to cache deps
 </rule>
+
+<rule name="claude_editing_rules_js_ts">
+# Claude Editing Rules (JS/TS)
+
+## General
+- Prefer clarity over cleverness. Small, readable functions.
+- Apply Prettier-compatible formatting (2 spaces, LF, trailing commas, semicolons).
+- Use strict equality (===/!==). No implicit coercion.
+- Prefer const; use let only when reassigned. Never use var.
+- Remove dead code and unused imports/vars (unless prefixed with _).
+- No TODOs without owner and date: // TODO(bob, YYYY-MM-DD): message
+
+## Commenting
+- Use JSDoc /** ... */ for:
+  - Module/file headers summarizing purpose, invariants, and assumptions.
+  - Public functions/types: @param, @returns, @throws, @example.
+  - Data shapes (typedef/interface).
+- Use // single-line comments only for brief local context.
+- Comments must explain WHY, not re-state WHAT the code does.
+- Link issues/PRDs in comments when relevant.
+- Prohibit redundant comments (that narrate obvious code).
+
+## Naming & Files
+- camelCase for vars/functions; PascalCase for classes/types; UPPER_SNAKE for const enums.
+- File names: kebab-case for modules; keep types near usage or in *.d.ts when shared.
+
+## Arrays of Object Literals
+- Provide a schema type (TypeScript interface or JSDoc @typedef).
+- Keep object keys in stable order; one object per line with trailing commas.
+- If there are constraints (e.g., allowed ranges), document them in JSDoc and validate when feasible.
+
+## JS/TS Type Discipline
+- Avoid any. Narrow types; prefer union/literal types.
+- In JS, use JSDoc typedefs & @type annotations to describe shapes.
+- Never export untyped objects for public consumption.
+
+## Error Handling
+- Don't swallow errors. Either handle explicitly or propagate with context.
+- Add error messages that include actionable context (ids, counts, thresholds).
+
+## Output Requirements (Claude)
+- Ensure code is formatted as Prettier would output.
+- Ensure it passes the repo ESLint config.
+- Maintain/insert JSDoc on public APIs and non-trivial modules.
+- Preserve existing comments; improve them only if clarity increases.
+- Return only changed files' contents; no extra prose unless asked.
+
+## Example Templates (use when applicable)
+- Function JSDoc:
+  /**
+   * <what/why in one sentence>
+   * @param {Type} name - purpose
+   * @returns {Type} description
+   * @throws {Error} when <condition>
+   * @example
+   *   const x = fn(arg);
+   */
+- Type JSDoc (JS):
+  /**
+   * @typedef {Object} Song
+   * @property {string} name
+   * @property {string} artist
+   * @property {number} year - 1980–1989 inclusive.
+   */
+
+# See CLAUDE.md for rationale and extended examples.
+</rule>
