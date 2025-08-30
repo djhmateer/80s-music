@@ -16,10 +16,18 @@
     <table id="songs-table">
         <thead>
             <tr>
-                <!-- Sortable column header with accessibility support
-                     aria-label provides screen readers with descriptive text about the sorting action
-                     since the visual "Song" text alone doesn't convey the interactive sorting functionality -->
-                <th onclick="sortBySong()" 
+                <!-- Sortable column header with ES6 module event handling
+                     How sorting works:
+                     1. This th element has id="sort-song-header" for JavaScript targeting
+                     2. ES6 module scope prevents global onclick, so we use addEventListener()
+                     3. JavaScript attaches click handler on DOM ready in script.js
+                     4. Click toggles between ascending/descending alphabetical sort
+                     5. Sort indicator span shows visual arrows (↑↓) for current state
+                     
+                     Accessibility features:
+                     - aria-label provides screen readers with descriptive text about the sorting action
+                     - title attribute shows hover tooltip explaining functionality -->
+                <th id="sort-song-header"
                     class="sortable" 
                     aria-label="Sort by song name"
                     title="Click to sort by song name - displays the title of each 80s music track">
@@ -35,7 +43,7 @@
         </tbody>
     </table>
     
-    <!-- Application script loaded after DOM structure -->
-    <script src="script.js"></script>
+    <!-- Data and application scripts loaded after DOM structure -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
