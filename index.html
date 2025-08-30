@@ -16,7 +16,16 @@
     <table id="songs-table">
         <thead>
             <tr>
-                <th>Song</th>
+                <!-- Sortable column header with accessibility support
+                     aria-label provides screen readers with descriptive text about the sorting action
+                     since the visual "Song" text alone doesn't convey the interactive sorting functionality -->
+                <th onclick="sortBySong()" 
+                    class="sortable" 
+                    aria-label="Sort by song name"
+                    title="Click to sort by song name - displays the title of each 80s music track">
+                    Song <!-- Empty span for displaying sort direction arrows (↑↓) via JavaScript -->
+                    <span class="sort-indicator"></span>
+                </th>
                 <th>Artist</th>
                 <th>Year</th>
             </tr>
