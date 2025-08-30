@@ -1,0 +1,9 @@
+<rule name="git_commit_messages">
+  Use Conventional Commit style:
+  - Format: <type>(scope): <summary>
+  - Types: feat, fix, refactor, docs, style, test, chore, perf
+  - Summary <= 50 chars, imperative mood
+  - Wrap body at 72 chars
+  - Explain "what + why" in body
+  - Add BREAKING CHANGE footer if needed
+</rule>
