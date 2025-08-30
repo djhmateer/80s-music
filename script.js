@@ -8,6 +8,7 @@
 /**
  * Array of 80s songs with enforced structure.
  * Note: Structure is enforced by IDE/JSDoc only - code will still run without it.
+ * JSDoc + VS Code provide type hints, autocomplete, and error detection for better DX (Developer Experience).
  * @type {Song[]}
  */
 const songs = [
@@ -18,7 +19,7 @@ const songs = [
   },
   {
     name: "Sweet Child O' Mine",
-    // artist: "Guns N' Roses",
+    artist: "Guns N' Roses",
     year: 1987,
   },
   {
@@ -36,7 +37,7 @@ const songs = [
  * - This is duck-typed: "If it walks like a duck and quacks like a duck, it's a duck."
  * - JavaScript doesn't enforce structure — any object can go in this array.
  */
-const songs2 = [
+const songsb = [
   {
     name: "Billie Jean",
     artist: "Michael Jackson",
@@ -44,7 +45,7 @@ const songs2 = [
   },
   {
     name: "Sweet Child O' Mine",
-    artist: "Guns N' Roses",
+    artistx: "Guns N' Roses",
     year: 1987,
   },
   {
