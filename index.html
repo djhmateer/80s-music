@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive viewport meta tag - prevents mobile browsers from auto-zooming and ensures proper scaling -->
+    <meta name="viewport" content="width=device-width">
     <title>Music of the 80s</title>
+    <!-- Modern SVG favicon for crisp display at all sizes -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>80s Music</h1>
+    
+    <!-- Data table for displaying songs collection -->
     <table id="songs-table">
         <thead>
             <tr>
@@ -17,9 +21,12 @@
                 <th>Year</th>
             </tr>
         </thead>
+        <!-- Table body populated dynamically by JavaScript -->
         <tbody id="songs-tbody">
         </tbody>
     </table>
+    
+    <!-- Application script loaded after DOM structure -->
     <script src="script.js"></script>
 </body>
 </html>
