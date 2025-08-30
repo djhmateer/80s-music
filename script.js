@@ -29,13 +29,25 @@ const songs = [
   },
 ];
 
+/**
+ * Renders the songs array as table rows in the DOM.
+ * Uses for...of loop with template literals for efficient HTML string building.
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    const tbody = document.getElementById('songs-tbody');
+    // Get table body element with type assertion to satisfy TypeScript null checks
+    const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
     
-    songs.forEach(song => {
-        const row = tbody.insertRow();
-        row.insertCell().textContent = song.name;
-        row.insertCell().textContent = song.artist;
-        row.insertCell().textContent = song.year;
-    });
+    // Using for...of loop to build HTML string
+    // Preferred over map().join('') as it avoids intermediate array creation
+    // Map is semantically for data transformation, not side effects like string building 
+    // Also preferred over forEach for easier debugging and control flow (break/continue)
+    let html = '';
+    for (const song of songs) {
+        html += `<tr>
+            <td>${song.name}</td>
+            <td>${song.artist}</td>
+            <td>${song.year}</td>
+        </tr>`;
+    }
+    tbody.innerHTML = html;
 });
