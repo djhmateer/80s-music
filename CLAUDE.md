@@ -24,9 +24,14 @@ The project uses JSDoc annotations with TypeScript's `checkJs` enabled for type 
 
 The project follows strict coding standards defined in `.claude-rules`:
 
+**Code Formatting**: All code must follow Prettier formatting standards for consistency:
+- HTML: 2-space indentation, self-closing tags with `/`, multi-line attributes with `>` at end of last attribute line
+- JavaScript: 2-space indentation, semicolons required, trailing commas, single quotes
+- CSS: 2-space indentation, trailing semicolons, consistent spacing
+- Line length: 80-100 characters maximum
+
 **Branch naming**: `<type>/<short-description>` (e.g., `feat/display-sample-data`)
 **Commit format**: Conventional Commits with type matching branch type
-**Code style**: Prettier-compatible (2 spaces, trailing commas, semicolons)
 **Variable declarations**: `const` preferred, `let` when reassigned, never `var`
 **Comments**: JSDoc for public APIs and type definitions, single-line for local context only
 

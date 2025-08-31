@@ -52,6 +52,40 @@
   Commit: chore(ci): update GitHub Actions workflow to cache deps
 </rule>
 
+<rule name="prettier_formatting_standards">
+# Prettier Code Formatting Standards
+
+All code must follow Prettier formatting standards for consistency and professional appearance.
+
+## HTML
+- 2-space indentation
+- Self-closing tags with trailing slash (e.g., `<meta charset="UTF-8" />`)
+- Multi-line attributes: each attribute on separate line when exceeding line length
+- Opening tag bracket `>` stays at end of last attribute line (not on separate line)
+- Block comments properly indented with `<!-- ... -->` format
+- No trailing spaces, proper line endings
+
+## JavaScript/TypeScript  
+- 2-space indentation
+- Semicolons required
+- Trailing commas in objects and arrays
+- Single quotes for strings (except when avoiding escapes)
+- Line length limit: 80-100 characters
+- Proper spacing around operators and function parameters
+
+## CSS
+- 2-space indentation
+- Properties sorted logically (not alphabetically)
+- Trailing semicolons required
+- Space after colons in property declarations
+- Consistent spacing in selectors
+
+## Configuration
+- Use Prettier defaults where possible
+- Override only when necessary for project requirements
+- Ensure all team members use same Prettier version and config
+</rule>
+
 <rule name="claude_editing_rules_js_ts">
 # Claude Editing Rules (JS/TS)
 

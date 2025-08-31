@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <!-- Responsive viewport meta tag - prevents mobile browsers from auto-zooming and ensures proper scaling -->
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" />
     <title>Music of the 80s</title>
     <!-- Modern SVG favicon for crisp display at all sizes -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>80s Music</h1>
-    
+
     <!-- Data table for displaying songs collection -->
     <table id="songs-table">
-        <thead>
-            <tr>
-                <!-- Sortable column header with ES6 module event handling
-                    How sorting works:
-                    1. This th element has id="sort-song-header" for JavaScript targeting
-                    2. ES6 module scope prevents global onclick, so we use addEventListener()
-                    3. JavaScript attaches click handler on DOM ready in script.js
-                    4. Click toggles between ascending/descending alphabetical sort
-                    5. Sort indicator span shows visual arrows (↑↓) for current state
-                   
-                    Accessibility features:
-                    - aria-label provides screen readers with descriptive text about the sorting action
-                    - title attribute shows hover tooltip explaining functionality -->
-                <th id="sort-song-header"
-                    class="sortable" 
-                    aria-label="Sort by song name"
-                    title="Click to sort by song name - displays the title of each 80s music track">
-                    Song <!-- Empty span for displaying sort direction arrows (↑↓) via JavaScript -->
-                    <span class="sort-indicator"></span>
-                </th>
-                <th>Artist</th>
-                <th>Year</th>
-            </tr>
-        </thead>
-        <!-- Table body populated dynamically by JavaScript -->
-        <tbody id="songs-tbody">
-        </tbody>
+      <thead>
+        <tr>
+          <!--
+            Sortable column header with ES6 module event handling
+            How sorting works:
+            1. This th element has id="sort-song-header" for JavaScript targeting
+            2. ES6 module scope prevents global onclick, so we use addEventListener()
+            3. JavaScript attaches click handler on DOM ready in script.js
+            4. Click toggles between ascending/descending alphabetical sort
+            5. Sort indicator span shows visual arrows (↑↓) for current state
+
+            Accessibility features:
+            - aria-label provides screen readers with descriptive text about the sorting action
+            - title attribute shows hover tooltip explaining functionality
+          -->
+          <th
+            id="sort-song-header"
+            class="sortable"
+            aria-label="Sort by song name"
+            title="Click to sort by song name - displays the title of each 80s music track">
+            Song
+            <!-- Empty span for displaying sort direction arrows (↑↓) via JavaScript -->
+            <span class="sort-indicator"></span>
+          </th>
+          <th>Artist</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <!-- Table body populated dynamically by JavaScript -->
+      <tbody id="songs-tbody"></tbody>
     </table>
-    
-    <!-- ES6 module script - enables import/export syntax and module scoping
-         type="module" creates isolated scope preventing global pollution -->
-    <script type="module" src="script.js"></script>
-</body>
+
+    <!--
+      ES6 module script - enables import/export syntax and module scoping
+      type="module" creates isolated scope preventing global pollution
+      onerror handles CORS failures when opening HTML file directly from filesystem
+    -->
+    <script
+      type="module"
+      src="script.js"
+      onerror="document.querySelector('h1').textContent='CORS Policy ERROR - Use a Webserver eg Live Server in VSCode'"
+    ></script>
+  </body>
 </html>

@@ -116,9 +116,13 @@ For older browsers, consider using a module bundler like Webpack or Vite.
 ### Coding Standards
 The project follows strict development standards defined in `.claude-rules`:
 
+- **Code Formatting**: All code follows Prettier standards for professional consistency
+  - HTML: 2-space indentation, self-closing tags, multi-line attributes with `>` at end of last attribute line
+  - JavaScript: 2-space indentation, semicolons required, trailing commas, single quotes
+  - CSS: 2-space indentation, consistent spacing, logical property ordering
+  - Line length: 80-100 characters maximum
 - **Branch Naming**: `<type>/<short-description>` (e.g., `feat/sorting-functionality`)
 - **Commit Format**: Conventional Commits with descriptive messages
-- **Code Style**: 2-space indentation, trailing commas, semicolons
 - **Comments**: JSDoc for APIs, concise inline comments for context
 
 ### Adding New Songs
