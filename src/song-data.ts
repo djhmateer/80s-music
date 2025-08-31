@@ -1,23 +1,34 @@
 /**
- * TypeScript interface for a song in the 80s music collection
+ * Song data structure for the 80s music application.
+ * 
+ * Defines the contract that all song objects must follow, ensuring
+ * type safety throughout the application at compile time.
  */
 export interface Song {
-  name: string;    // Song title, non-empty string
-  artist: string;  // Performing artist or band name  
-  year: number;    // Release year, must be 1980-1989 inclusive
+  /** Song title - should be non-empty but TypeScript doesn't enforce this constraint */
+  name: string;
+  /** Artist or band name - should be non-empty but TypeScript doesn't enforce this constraint */
+  artist: string;
+  /** Release year - should be 1980-1989 inclusive but TypeScript only enforces number type */
+  year: number;
 }
 
 /**
- * Import song data from JSON file.
- * This separation of data from code is a professional practice that:
- * - Makes data easier to edit without touching code
- * - Enables potential dynamic loading in the future
- * - Keeps the TypeScript files focused on logic
+ * Imports song data using JSON module import with type assertion.
+ * 
+ * The `with { type: "json" }` syntax is required by modern browsers for security -
+ * it explicitly declares this import as JSON data, not executable code.
+ * This prevents potential security vulnerabilities from malicious JSON files.
  */
-import songsJson from './songs.json';
+import songData from './songs.json' with { type: "json" };
 
 /**
- * Array of 80s songs with enforced structure.
- * TypeScript validates the JSON data against the Song interface at compile time.
+ * Typed array of 80s songs exported for use throughout the application.
+ * 
+ * TypeScript performs compile-time validation that the JSON structure matches
+ * the Song interface, but does NOT validate the actual constraint values
+ * (like year range 1980-1989 or non-empty strings).
+ * 
+ * Runtime validation would be needed to enforce the documented constraints.
  */
-export const songs: Song[] = songsJson;
+export const songs: Song[] = songData;

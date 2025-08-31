@@ -258,19 +258,21 @@ npm run serve        # Serve application on localhost:3000
 
 ### 🔍 IN PROGRESS: Code Review & Documentation Phase
 
-**Current Focus:** Deep analysis of `src/song-data.ts`
+**Current Focus:** Deep refactoring of `src/song-data.ts`
 
-**Analysis Completed:**
-- [x] Line-by-line examination of song-data.ts
-- [x] Identified potential improvements:
-  1. **Runtime Validation** - Interface says "non-empty string" and "1980-1989" but no enforcement
-  2. **Type Safety Enhancement** - Could use branded types or template literals for year constraints
-  3. **Comment Optimization** - Some comments are redundant, others could be more precise
-  4. **Import Naming** - `songsJson` could be simplified to `songData`
-  5. **Schema Validation** - Consider adding runtime validation for JSON data
+**Completed Improvements:**
+- [x] **JSON Import Fix** - Fixed MIME type error by adding `with { type: "json" }` syntax
+- [x] **Comment Enhancement** - Complete rewrite of all comments to accurately describe:
+  - TypeScript compile-time vs runtime validation limitations
+  - Security implications of JSON module imports
+  - Clear distinction between structure validation and constraint enforcement
+- [x] **Import Naming** - Improved `songsJson` to `songData` for clarity
 
-**Next Steps:**
-- [ ] Implement identified improvements in song-data.ts
+**Remaining Work on song-data.ts:**
+- [ ] Implement runtime validation for Song interface constraints
+- [ ] Enhance type safety with branded types for year validation
+
+**Branch Status:** ts-code-review (active)
 - [ ] Continue with remaining files:
   - [ ] `src/script.ts` - Main application logic analysis
   - [ ] `src/songs.json` - Data format choices
