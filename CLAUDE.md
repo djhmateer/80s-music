@@ -41,6 +41,35 @@ The project follows strict coding standards defined in `.claude-rules`:
 - `jsconfig.json:4-8` - TypeScript compiler options for JavaScript type checking
 - `.claude-rules:55-119` - Comprehensive JavaScript/TypeScript coding standards
 
+## Current Tasks
+
+### Accessibility Improvements (feat/a11y-sorting branch)
+
+The following accessibility enhancements are needed for WCAG 2.1 AA compliance:
+
+**ARIA Attributes & Roles:**
+- [ ] Add `role="button"` to sortable table headers (`index.html:39-47`)
+- [ ] Implement `aria-sort="ascending|descending|none"` states (`script.js:51-69`)
+- [ ] Add `tabindex="0"` to make sortable headers keyboard focusable (`index.html:39-47`)
+- [ ] Add `aria-live="polite"` region for announcing sort changes (`index.html`)
+
+**Keyboard Navigation:**
+- [ ] Implement keyboard event handlers for Enter and Space keys (`script.js:80-88`)
+- [ ] Add CSS focus indicators for keyboard navigation visibility (`style.css:44-62`)
+
+**JavaScript Enhancements:**
+- [ ] Update JavaScript to manage ARIA sort states dynamically (`script.js:51-69`)
+- [ ] Add live region announcements for sort changes (`script.js:51-69`)
+
+**Testing:**
+- [ ] Test accessibility with screen reader and keyboard-only navigation
+
+**File Locations:**
+- HTML structure: `index.html` lines 39-47 (sortable `<th>` element)
+- Event handling: `script.js` lines 80-88 (addEventListener setup)
+- Sort function: `script.js` lines 51-69 (sortBySong function)
+- Styling: `style.css` lines 44-62 (sortable header styles)
+
 ## Current State
 
 The project is in active development with sample 80s music data structures in place. The codebase demonstrates proper JSDoc usage for type safety in vanilla JavaScript projects without build complexity.
