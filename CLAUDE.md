@@ -61,45 +61,75 @@ Full WCAG 2.1 AA compliance implemented for sortable table functionality:
 - [x] Update JavaScript to manage ARIA sort states dynamically (`script.js:65-71`)
 - [x] Add live region announcements for sort changes (`script.js:75-76`)
 
-## Current Tasks
+### ✅ Multi-Column Sorting with URL Persistence (completed in feat/sorting-concepts branch)
 
-### Multi-Column Sorting with URL Persistence (feat/sorting-concepts branch)
-
-The following features implement comprehensive sorting across all table columns with URL persistence:
+Full implementation of comprehensive sorting across all table columns with URL persistence:
 
 **URL Persistence:**
-- [ ] Design URL structure with query parameters (`?sort=name&order=desc`)
-- [ ] Implement URL reading on page load to restore sort state
-- [ ] Update URL when sort changes (without page refresh)
-- [ ] Handle browser back/forward navigation with sort states
-- [ ] Add deep linking support for shareable sorted URLs
+- [x] Design URL structure with query parameters (`?sort=song&order=desc`)
+- [x] Implement URL reading on page load to restore sort state
+- [x] Update URL when sort changes (without page refresh using history.pushState)
+- [x] Handle browser back/forward navigation with sort states
+- [x] Add deep linking support for shareable sorted URLs
 
 **Multi-Column Sorting:**
-- [ ] Extend sortable functionality to Artist column
-- [ ] Extend sortable functionality to Year column (numeric sorting)
-- [ ] Implement independent column sorting (one active at a time)
-- [ ] Add visual indicators showing which column is actively sorted
-- [ ] Handle data type differences (text vs numeric sorting)
+- [x] Extend sortable functionality to Artist column with text sorting
+- [x] Extend sortable functionality to Year column with numeric sorting
+- [x] Implement independent column sorting (one active at a time)
+- [x] Add visual indicators showing which column is actively sorted
+- [x] Handle data type differences (text vs numeric sorting with localeCompare)
 
 **Accessibility & Keyboard Navigation:**
-- [ ] Apply ARIA button role and attributes to all sortable headers
-- [ ] Implement keyboard navigation (Tab, Enter, Space) for all columns
-- [ ] Add focus indicators for all sortable headers
-- [ ] Update live region announcements for all columns
-- [ ] Test complete keyboard navigation across all columns
+- [x] Apply ARIA button role and attributes to all sortable headers
+- [x] Implement keyboard navigation (Tab, Enter, Space) for all columns
+- [x] Add focus indicators for all sortable headers (fixed clipping issue)
+- [x] Update live region announcements for all columns
+- [x] Test complete keyboard navigation across all columns
 
 **User Experience Enhancements:**
-- [ ] Add default sort state on initial page load
-- [ ] Implement sort direction cycling (none → asc → desc → none)
-- [ ] Add visual sort direction indicators (arrows) for all columns
-- [ ] Handle edge cases (empty data, special characters)
-- [ ] Optimize performance for sorting operations
+- [x] Add clickable heading link to home (/) with professional styling
+- [x] Implement sort direction cycling with visual arrows (↑↓)
+- [x] Add enhanced Year column styling with fixed width to prevent layout shifts
+- [x] Professional CSS organization and hover effects
+- [x] Optimize performance with generic sortByColumn function
 
-**File Locations:**
-- HTML structure: `index.html` lines 47-61 (all table headers)
-- Sort logic: `script.js` sortBySong function (extend to generic)
-- URL handling: New URL parsing and updating functions needed
-- Styling: `style.css` sortable header styles (apply to all columns)
+## Current Tasks
+
+### TypeScript Migration (feat/ts-migration branch)
+
+Migrate the project from JavaScript with JSDoc to full TypeScript for better type safety and developer experience:
+
+**Setup & Configuration:**
+- [ ] Install TypeScript and configure build tools
+- [ ] Create tsconfig.json with appropriate compiler options
+- [ ] Update package.json with TypeScript scripts
+- [ ] Configure development server for TypeScript compilation
+- [ ] Set up source maps for debugging
+
+**Code Migration:**
+- [ ] Rename script.js to script.ts
+- [ ] Convert JSDoc type annotations to TypeScript types
+- [ ] Create proper TypeScript interfaces for Song data
+- [ ] Add explicit typing to all functions and variables
+- [ ] Fix type assertion issues and null safety
+
+**Type Definitions:**
+- [ ] Define SortColumn type ('song' | 'artist' | 'year')
+- [ ] Define SortOrder type ('asc' | 'desc' | 'none')
+- [ ] Create URLSortState interface for URL parsing
+- [ ] Add proper DOM element typing throughout
+
+**Build Process:**
+- [ ] Set up TypeScript compilation pipeline
+- [ ] Configure output directory structure
+- [ ] Test build process and generated JavaScript
+- [ ] Update HTML to reference compiled JavaScript
+- [ ] Verify all functionality works after migration
+
+**Documentation Updates:**
+- [ ] Update README.md with TypeScript information
+- [ ] Modify development instructions for TypeScript workflow
+- [ ] Update CLAUDE.md with new file structure and types
 
 ## Current State
 

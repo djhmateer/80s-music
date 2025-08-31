@@ -24,7 +24,7 @@ import { songs } from './song-data.js';
 
 // ===== STATE MANAGEMENT =====
 let currentSortOrder = 'none'; // 'none', 'asc', 'desc'
-let currentSortColumn = null; // 'song', 'artist', 'year', or null
+let currentSortColumn = /** @type {'song' | 'artist' | 'year' | null} */ (null);
 
 // ===== UTILITY FUNCTIONS =====
 
@@ -49,7 +49,7 @@ function renderTable(tbody, songsData) {
 
 /**
  * Parses the current URL to extract sort parameters.
- * @returns {{column: string|null, order: string}} Sort state from URL
+ * @returns {{column: 'song'|'artist'|'year'|null, order: 'asc'|'desc'}} Sort state from URL
  */
 function parseSortFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -61,7 +61,10 @@ function parseSortFromURL() {
     const validOrders = ['asc', 'desc'];
     
     if (validColumns.includes(column) && validOrders.includes(order)) {
-        return { column, order };
+        return { 
+            column: /** @type {'song'|'artist'|'year'} */ (column), 
+            order: /** @type {'asc'|'desc'} */ (order) 
+        };
     }
     
     return { column: null, order: 'asc' };
@@ -231,15 +234,15 @@ function attachColumnEvents(column) {
  * This requires using addEventListener() instead of inline onclick handlers.
  */
 document.addEventListener('DOMContentLoaded', function() {
-    const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
-    
-    // Parse URL to get initial sort state
-    const urlSort = parseSortFromURL();
-    
-    // Attach event listeners to all sortable columns
+   
+    // Attach event listeners to all sortable columns so that
+    // we can click on them with a mouse or keyboard to sort 
     attachColumnEvents('song');
     attachColumnEvents('artist');
     attachColumnEvents('year');
+     
+    // Parse URL to get initial sort state
+    const urlSort = parseSortFromURL();
     
     // Apply initial sort state from URL (if any)
     if (urlSort.column) {
@@ -251,11 +254,14 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSortOrder = 'desc'; // Will toggle to asc  
             currentSortColumn = null; // Will start fresh with asc
         }
+        // sortbyColumn calls rednerTable internally
         sortByColumn(urlSort.column);
     } else {
         // Render initial table data (unsorted)
         const table = /** @type {HTMLElement} */ (document.getElementById('songs-table'));
         table.classList.remove('sorting-year', 'sorting-song', 'sorting-artist');
+
+        const tbody = document.getElementById('songs-tbody');
         renderTable(tbody, songs);
     }
 });
