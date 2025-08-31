@@ -4,6 +4,7 @@
   "description": "A professional sortable table application showcasing 80s music tracks with TypeScript, URL persistence, and full accessibility support",
   "type": "module",
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "dev": "tsc --watch & serve . -p 3000",

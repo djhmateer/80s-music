@@ -10,7 +10,7 @@
  * - Full keyboard accessibility and screen reader support
  * - ES6 module architecture for better code organization
  * - Professional event handling with addEventListener
- * - Type-safe development with JSDoc annotations
+ * - Type-safe development with TypeScript
  * 
  * @author Generated with Claude Code
  */
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function(): void {
             currentSortOrder = 'desc'; // Will toggle to asc  
             currentSortColumn = null; // Will start fresh with asc
         }
-        // sortbyColumn calls rednerTable internally
+        // sortByColumn calls renderTable internally
         sortByColumn(urlSort.column);
     } else {
         // Render initial table data (unsorted)

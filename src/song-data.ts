@@ -8,23 +8,16 @@ export interface Song {
 }
 
 /**
- * Array of 80s songs with enforced structure.
- * TypeScript provides compile-time type checking, autocomplete, and error detection.
+ * Import song data from JSON file.
+ * This separation of data from code is a professional practice that:
+ * - Makes data easier to edit without touching code
+ * - Enables potential dynamic loading in the future
+ * - Keeps the TypeScript files focused on logic
  */
-export const songs: Song[] = [
-  {
-    name: "Billie Jean",
-    artist: "Michael Jackson",
-    year: 1982,
-  },
-  {
-    name: "Sweet Child O' Mine",
-    artist: "Guns N' Roses",
-    year: 1987,
-  },
-  {
-    name: "Livin' on a Prayer",
-    artist: "Bon Jovi",
-    year: 1986,
-  },
-];
+import songsJson from './songs.json';
+
+/**
+ * Array of 80s songs with enforced structure.
+ * TypeScript validates the JSON data against the Song interface at compile time.
+ */
+export const songs: Song[] = songsJson;
