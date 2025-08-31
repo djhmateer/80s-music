@@ -5,7 +5,9 @@
  * Built using ES6 modules for modern JavaScript development practices.
  * 
  * Features:
- * - Sortable song table with visual indicators
+ * - Multi-column sortable table with visual indicators
+ * - URL persistence for sort state with deep linking support
+ * - Full keyboard accessibility and screen reader support
  * - ES6 module architecture for better code organization
  * - Professional event handling with addEventListener
  * - Type-safe development with JSDoc annotations
@@ -22,50 +24,7 @@ import { songs } from './song-data.js';
 
 // ===== STATE MANAGEMENT =====
 let currentSortOrder = 'none'; // 'none', 'asc', 'desc'
-let currentSortColumn = null; // 'name', 'artist', 'year', or null
-
-// ===== URL PERSISTENCE FUNCTIONS =====
-
-/**
- * Parses the current URL to extract sort parameters.
- * @returns {{column: string|null, order: string}} Sort state from URL
- */
-function parseSortFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    const column = params.get('sort');
-    const order = params.get('order') || 'asc';
-    
-    // Validate column parameter
-    const validColumns = ['name', 'artist', 'year'];
-    const validOrders = ['asc', 'desc'];
-    
-    if (validColumns.includes(column) && validOrders.includes(order)) {
-        return { column, order };
-    }
-    
-    return { column: null, order: 'asc' };
-}
-
-/**
- * Updates the URL to reflect current sort state without page refresh.
- * @param {string|null} column - Column to sort by ('name', 'artist', 'year', or null)
- * @param {string} order - Sort direction ('asc' or 'desc')
- */
-function updateSortURL(column, order) {
-    const url = new URL(window.location);
-    
-    if (column && order) {
-        url.searchParams.set('sort', column);
-        url.searchParams.set('order', order);
-    } else {
-        // Remove sort parameters for unsorted state
-        url.searchParams.delete('sort');
-        url.searchParams.delete('order');
-    }
-    
-    // Update URL without page refresh
-    history.pushState({}, '', url);
-}
+let currentSortColumn = null; // 'song', 'artist', 'year', or null
 
 // ===== UTILITY FUNCTIONS =====
 
@@ -86,11 +45,85 @@ function renderTable(tbody, songsData) {
     tbody.innerHTML = html;
 }
 
+// ===== URL PERSISTENCE FUNCTIONS =====
+
+/**
+ * Parses the current URL to extract sort parameters.
+ * @returns {{column: string|null, order: string}} Sort state from URL
+ */
+function parseSortFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const column = params.get('sort');
+    const order = params.get('order') || 'asc';
+    
+    // Validate column parameter
+    const validColumns = ['song', 'artist', 'year'];
+    const validOrders = ['asc', 'desc'];
+    
+    if (validColumns.includes(column) && validOrders.includes(order)) {
+        return { column, order };
+    }
+    
+    return { column: null, order: 'asc' };
+}
+
+/**
+ * Updates the URL to reflect current sort state without page refresh.
+ * @param {string|null} column - Column to sort by ('song', 'artist', 'year', or null)
+ * @param {string} order - Sort direction ('asc' or 'desc')
+ */
+function updateSortURL(column, order) {
+    const url = new URL(window.location);
+    
+    if (column && order) {
+        url.searchParams.set('sort', column);
+        url.searchParams.set('order', order);
+    } else {
+        // Remove sort parameters for unsorted state
+        url.searchParams.delete('sort');
+        url.searchParams.delete('order');
+    }
+    
+    // Update URL without page refresh
+    history.pushState({}, '', url);
+}
+
 // ===== SORTING FUNCTIONALITY =====
 
 /**
+ * Resets visual indicators and ARIA states for all columns except the active one.
+ * @param {string} activeColumn - The column being sorted
+ */
+function resetOtherColumns(activeColumn) {
+    const columns = ['song', 'artist', 'year'];
+    
+    columns.forEach(column => {
+        if (column !== activeColumn) {
+            const header = /** @type {HTMLElement} */ (document.getElementById(`sort-${column}-header`));
+            const indicator = /** @type {HTMLElement} */ (header.querySelector('.sort-indicator'));
+            
+            header.setAttribute('aria-sort', 'none');
+            indicator.textContent = '';
+        }
+    });
+}
+
+/**
+ * Updates table CSS classes based on the active sort column for enhanced styling.
+ * @param {HTMLElement} table - The table element
+ * @param {string} column - The column being sorted
+ */
+function updateTableClasses(table, column) {
+    // Remove all sorting classes
+    table.classList.remove('sorting-year', 'sorting-song', 'sorting-artist');
+    
+    // Add class for current sort column
+    table.classList.add(`sorting-${column}`);
+}
+
+/**
  * Generic sorting function that handles all columns with different data types.
- * @param {string} column - Column to sort by ('name', 'artist', 'year')
+ * @param {string} column - Column to sort by ('song', 'artist', 'year')
  */
 function sortByColumn(column) {
     const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
@@ -104,7 +137,7 @@ function sortByColumn(column) {
     updateTableClasses(table, column);
     
     // Get elements for current column
-    const sortHeader = /** @type {HTMLElement} */ (document.getElementById(getHeaderId(column)));
+    const sortHeader = /** @type {HTMLElement} */ (document.getElementById(`sort-${column}-header`));
     const sortIndicator = /** @type {HTMLElement} */ (sortHeader.querySelector('.sort-indicator'));
     
     let sortedSongs;
@@ -131,9 +164,9 @@ function sortByColumn(column) {
             sortDescription = 'Table sorted by release year in descending order (1989-1980)';
         }
     } else {
-        // Text sorting for name and artist
-        const property = column === 'name' ? 'name' : 'artist';
-        const displayName = column === 'name' ? 'song name' : 'artist name';
+        // Text sorting for song and artist
+        const property = column === 'song' ? 'name' : 'artist';
+        const displayName = column === 'song' ? 'song name' : 'artist name';
         
         if (newOrder === 'asc') {
             sortedSongs = [...songs].sort((a, b) => a[property].localeCompare(b[property]));
@@ -162,67 +195,14 @@ function sortByColumn(column) {
     renderTable(tbody, sortedSongs);
 }
 
-/**
- * Resets visual indicators and ARIA states for all columns except the active one.
- * @param {string} activeColumn - The column being sorted
- */
-function resetOtherColumns(activeColumn) {
-    const columns = ['name', 'artist', 'year'];
-    
-    columns.forEach(column => {
-        if (column !== activeColumn) {
-            const header = /** @type {HTMLElement} */ (document.getElementById(getHeaderId(column)));
-            const indicator = /** @type {HTMLElement} */ (header.querySelector('.sort-indicator'));
-            
-            header.setAttribute('aria-sort', 'none');
-            indicator.textContent = '';
-        }
-    });
-}
-
-/**
- * Updates table CSS classes based on the active sort column for enhanced styling.
- * @param {HTMLElement} table - The table element
- * @param {string} column - The column being sorted
- */
-function updateTableClasses(table, column) {
-    // Remove all sorting classes
-    table.classList.remove('sorting-year', 'sorting-name', 'sorting-artist');
-    
-    // Add class for current sort column
-    table.classList.add(`sorting-${column}`);
-}
-
-
-// ===== INITIALIZATION =====
-
-/**
- * Initializes the application when DOM is ready.
- * Sets up event listeners and renders initial data.
- * 
- * Note: ES6 modules create isolated scope, so functions are not globally accessible.
- * This requires using addEventListener() instead of inline onclick handlers.
- */
-/**
- * Gets the header ID for a given column.
- * @param {string} column - Column identifier ('name', 'artist', 'year')
- * @returns {string} The actual HTML ID for the header
- */
-function getHeaderId(column) {
-    const idMap = {
-        'name': 'sort-song-header',
-        'artist': 'sort-artist-header', 
-        'year': 'sort-year-header'
-    };
-    return idMap[column];
-}
+// ===== EVENT HANDLING =====
 
 /**
  * Attaches event listeners to a sortable column header.
- * @param {string} column - Column identifier ('name', 'artist', 'year')
+ * @param {string} column - Column identifier ('song', 'artist', 'year')
  */
 function attachColumnEvents(column) {
-    const sortHeader = /** @type {HTMLElement} */ (document.getElementById(getHeaderId(column)));
+    const sortHeader = /** @type {HTMLElement} */ (document.getElementById(`sort-${column}-header`));
     
     if (!sortHeader) {
         console.error(`Header not found for column: ${column}`);
@@ -241,6 +221,15 @@ function attachColumnEvents(column) {
     });
 }
 
+// ===== INITIALIZATION =====
+
+/**
+ * Initializes the application when DOM is ready.
+ * Sets up event listeners and renders initial data.
+ * 
+ * Note: ES6 modules create isolated scope, so functions are not globally accessible.
+ * This requires using addEventListener() instead of inline onclick handlers.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
     
@@ -248,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlSort = parseSortFromURL();
     
     // Attach event listeners to all sortable columns
-    attachColumnEvents('name');
+    attachColumnEvents('song');
     attachColumnEvents('artist');
     attachColumnEvents('year');
     
@@ -266,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // Render initial table data (unsorted)
         const table = /** @type {HTMLElement} */ (document.getElementById('songs-table'));
-        table.classList.remove('sorting-year', 'sorting-name', 'sorting-artist');
+        table.classList.remove('sorting-year', 'sorting-song', 'sorting-artist');
         renderTable(tbody, songs);
     }
 });
