@@ -21,7 +21,7 @@ Open `index.html` in a modern web browser to see the application in action. Clic
 ### Prerequisites
 
 - Modern web browser with ES6 module support (Chrome 61+, Firefox 60+, Safari 11+)
-- Local web server (for ES6 modules) or simply open `index.html` in browser
+- Local web server (for ES6 modules) then open `index.html` in browser
 
 ### Installation
 
@@ -101,12 +101,8 @@ Follows industry best practices:
 
 ## Browser Support
 
-- Chrome 61+ (ES6 modules)
-- Firefox 60+ (ES6 modules)
-- Safari 11+ (ES6 modules)
-- Edge 16+ (ES6 modules)
+Modern browsers which support ES6 modules
 
-For older browsers, consider using a module bundler like Webpack or Vite.
 
 ## Development
 
