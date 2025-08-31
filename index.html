@@ -17,16 +17,16 @@
         <thead>
             <tr>
                 <!-- Sortable column header with ES6 module event handling
-                     How sorting works:
-                     1. This th element has id="sort-song-header" for JavaScript targeting
-                     2. ES6 module scope prevents global onclick, so we use addEventListener()
-                     3. JavaScript attaches click handler on DOM ready in script.js
-                     4. Click toggles between ascending/descending alphabetical sort
-                     5. Sort indicator span shows visual arrows (↑↓) for current state
-                     
-                     Accessibility features:
-                     - aria-label provides screen readers with descriptive text about the sorting action
-                     - title attribute shows hover tooltip explaining functionality -->
+                    How sorting works:
+                    1. This th element has id="sort-song-header" for JavaScript targeting
+                    2. ES6 module scope prevents global onclick, so we use addEventListener()
+                    3. JavaScript attaches click handler on DOM ready in script.js
+                    4. Click toggles between ascending/descending alphabetical sort
+                    5. Sort indicator span shows visual arrows (↑↓) for current state
+                   
+                    Accessibility features:
+                    - aria-label provides screen readers with descriptive text about the sorting action
+                    - title attribute shows hover tooltip explaining functionality -->
                 <th id="sort-song-header"
                     class="sortable" 
                     aria-label="Sort by song name"
@@ -43,7 +43,8 @@
         </tbody>
     </table>
     
-    <!-- Data and application scripts loaded after DOM structure -->
+    <!-- ES6 module script - enables import/export syntax and module scoping
+         type="module" creates isolated scope preventing global pollution -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
