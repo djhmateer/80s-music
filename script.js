@@ -1,66 +1,29 @@
-/*
- * ES6 MODULES IMPLEMENTATION
+/**
+ * 80s Music Table Application
  * 
- * Why ES6 modules over global scripts:
- * 1. SCOPED VARIABLES: Variables and functions are module-scoped, not global
- *    - Prevents namespace pollution and naming conflicts
- *    - Better encapsulation and maintainability
+ * A simple web application that displays a sortable table of 80s music tracks.
+ * Built using ES6 modules for modern JavaScript development practices.
  * 
- * 2. EXPLICIT DEPENDENCIES: Import/export clearly defines what code depends on what
- *    - Makes dependencies traceable and debuggable
- *    - IDE can provide better autocomplete and refactoring support
+ * Features:
+ * - Sortable song table with visual indicators
+ * - ES6 module architecture for better code organization
+ * - Professional event handling with addEventListener
+ * - Type-safe development with JSDoc annotations
  * 
- * 3. STATIC ANALYSIS: Module dependencies are resolved at compile time
- *    - Bundlers can perform tree-shaking (remove unused code)
- *    - Better tooling support and error detection
- * 
- * 4. MODERN STANDARD: ES6 modules are the official JavaScript module system
- *    - Supported natively in all modern browsers
- *    - Future-proof approach for web development
- * 
- * Trade-offs:
- * - Requires modern browser or bundler (IE11+ with polyfills)
- * - Functions not automatically global (need event listeners vs onclick)
- * - Slightly more complex setup for simple projects
+ * @author Generated with Claude Code
  */
 
-// Import song data with explicit dependency declaration
+// ===== IMPORTS =====
 import { songs } from './song-data.js';
 
 /**
- * Import Song type definition from external module for TypeScript support
  * @typedef {import('./song-data.js').Song} Song
  */
 
-// Track current sort state for toggle functionality
+// ===== STATE MANAGEMENT =====
 let currentSortOrder = 'none'; // 'none', 'asc', 'desc'
 
-/**
- * Sorts songs by name and updates the display.
- * Toggles between ascending, descending, and original order.
- */
-function sortBySong() {
-    const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
-    const sortIndicator = /** @type {HTMLElement} */ (document.querySelector('.sort-indicator'));
-    
-    let sortedSongs;
-    
-    // Determine next sort order and sort accordingly
-    if (currentSortOrder === 'none' || currentSortOrder === 'desc') {
-        // Sort ascending
-        sortedSongs = [...songs].sort((a, b) => a.name.localeCompare(b.name));
-        currentSortOrder = 'asc';
-        sortIndicator.textContent = ' ↑';
-    } else {
-        // Sort descending  
-        sortedSongs = [...songs].sort((a, b) => b.name.localeCompare(a.name));
-        currentSortOrder = 'desc';
-        sortIndicator.textContent = ' ↓';
-    }
-    
-    // Re-render table with sorted data
-    renderTable(tbody, sortedSongs);
-}
+// ===== UTILITY FUNCTIONS =====
 
 /**
  * Renders song data into the table body.
@@ -68,10 +31,6 @@ function sortBySong() {
  * @param {Song[]} songsData - Array of songs to render
  */
 function renderTable(tbody, songsData) {
-    // Using for...of loop to build HTML string
-    // Preferred over map().join('') as it avoids intermediate array creation
-    // Map is semantically for data transformation, not side effects like string building 
-    // Also preferred over forEach for easier debugging and control flow (break/continue)
     let html = '';
     for (const song of songsData) {
         html += `<tr>
@@ -83,30 +42,48 @@ function renderTable(tbody, songsData) {
     tbody.innerHTML = html;
 }
 
+// ===== SORTING FUNCTIONALITY =====
+
 /**
- * Renders the songs array as table rows in the DOM.
- * Uses for...of loop with template literals for efficient HTML string building.
+ * Sorts songs by name and updates the display.
+ * Toggles between ascending and descending alphabetical order.
  */
-/*
- * DOM INITIALIZATION WITH ES6 MODULE CONSIDERATIONS
+function sortBySong() {
+    const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
+    const sortIndicator = /** @type {HTMLElement} */ (document.querySelector('.sort-indicator'));
+    
+    let sortedSongs;
+    
+    // Toggle between ascending and descending sort
+    if (currentSortOrder === 'none' || currentSortOrder === 'desc') {
+        sortedSongs = [...songs].sort((a, b) => a.name.localeCompare(b.name));
+        currentSortOrder = 'asc';
+        sortIndicator.textContent = ' ↑';
+    } else {
+        sortedSongs = [...songs].sort((a, b) => b.name.localeCompare(a.name));
+        currentSortOrder = 'desc';
+        sortIndicator.textContent = ' ↓';
+    }
+    
+    renderTable(tbody, sortedSongs);
+}
+
+// ===== INITIALIZATION =====
+
+/**
+ * Initializes the application when DOM is ready.
+ * Sets up event listeners and renders initial data.
  * 
- * Since ES6 modules create their own scope, functions like sortBySong() 
- * are not accessible globally. This means inline onclick handlers won't work.
- * 
- * Professional solution: Use addEventListener() to attach event handlers
- * - Separates HTML structure from JavaScript behavior
- * - Works correctly with module scoping
- * - More maintainable and follows modern best practices
+ * Note: ES6 modules create isolated scope, so functions are not globally accessible.
+ * This requires using addEventListener() instead of inline onclick handlers.
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Get table body element with type assertion to satisfy TypeScript null checks
     const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
-    
-    // Get sort header element and attach event listener (replaces onclick attribute)
-    // This is necessary because ES6 modules don't expose functions globally
     const sortHeader = /** @type {HTMLElement} */ (document.getElementById('sort-song-header'));
+    
+    // Attach sort functionality to header
     sortHeader.addEventListener('click', sortBySong);
     
-    // Render initial table data using the reusable render function
+    // Render initial table data
     renderTable(tbody, songs);
 });
