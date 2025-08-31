@@ -1,0 +1,30 @@
+{
+  "name": "80s-music",
+  "version": "1.0.0",
+  "description": "A professional sortable table application showcasing 80s music tracks with TypeScript, URL persistence, and full accessibility support",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "dev": "tsc --watch & serve . -p 3000",
+    "serve": "serve . -p 3000",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "typescript",
+    "accessibility",
+    "sorting",
+    "es6-modules",
+    "url-persistence"
+  ],
+  "author": "Dave Mateer",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.4",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
