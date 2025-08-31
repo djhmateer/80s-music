@@ -1,6 +1,6 @@
 # 80s Music Table
 
-A simple, professional web application that displays a sortable table of classic 80s music tracks. Built with vanilla JavaScript using modern ES6 modules and professional development practices.
+A professional web application that displays a sortable table of classic 80s music tracks. Built with TypeScript, ES6 modules, and modern development practices including full type safety, accessibility compliance, and URL persistence.
 
 This project demonstrates production-grade coding practices and serves as a practical example of professional web development techniques. For more background on the project's intent and coding philosophy, see: [Production Grade Code](https://davemateer.com/2025/08/30/production-grade-code).
 
@@ -9,7 +9,7 @@ This project demonstrates production-grade coding practices and serves as a prac
 - **Sortable Music Table**: Click column headers to sort songs alphabetically
 - **Responsive Design**: Works on desktop and mobile devices
 - **Accessibility**: Screen reader support with ARIA labels and semantic HTML
-- **Modern JavaScript**: ES6 modules, type safety with JSDoc, professional code organization
+- **TypeScript**: Full type safety with strict checking, interfaces, and modern ES2022 features
 - **Performance**: Lightweight vanilla JavaScript with no external dependencies
 
 ## Demo
@@ -20,31 +20,50 @@ Open `index.html` in a modern web browser to see the application in action. Clic
 
 ### Prerequisites
 
-- Modern web browser with ES6 module support (Chrome 61+, Firefox 60+, Safari 11+)
-- Local web server (for ES6 modules) then open `index.html` in browser
+- **Node.js 16+** - For TypeScript compilation and development server
+- **Modern web browser** - Chrome 61+, Firefox 60+, Safari 11+, Edge 16+
+- **TypeScript** - Install globally: `npm install -g typescript`
 
-### Installation
+### Installation & Development
 
-1. Clone or download this repository
-2. **Important**: Serve from a web server (ES6 modules require HTTP/HTTPS, not `file://`)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd 80s-music
+   ```
 
-**Option A - Simple HTTP Server:**
-```bash
-# Python 3
-python -m http.server 8000
+2. **Install dependencies** (if using npm packages)
+   ```bash
+   npm install
+   ```
 
-# Node.js (if you have it)
-npx serve .
+3. **Development workflow** (Choose one)
 
-# PHP (if you have it) 
-php -S localhost:8000
-```
+   **Option A - Development with live compilation:**
+   ```bash
+   npm run dev
+   # Opens development server with TypeScript compilation
+   # Visit http://localhost:3000
+   ```
 
-**Option B - VS Code Live Server:**
-- Install "Live Server" extension
-- Right-click `index.html` → "Open with Live Server"
+   **Option B - Manual build process:**
+   ```bash
+   # Build TypeScript to JavaScript
+   npm run build
+   
+   # Serve the application
+   npm run serve
+   # Visit http://localhost:3000
+   ```
 
-3. Open `http://localhost:8000` in your browser
+   **Option C - Watch mode compilation:**
+   ```bash
+   # Start TypeScript watch mode
+   npm run build:watch
+   
+   # In another terminal, serve files
+   npm run serve
+   ```
 
 ## Project Structure
 
@@ -86,11 +105,12 @@ The project uses modern ES6 modules for better code organization:
 - **Explicit dependencies**: Clear import/export relationships
 - **Better tooling**: Enhanced IDE support and bundling capabilities
 
-### Type Safety
-JSDoc annotations provide type safety without compilation:
-- Song interface with name, artist, and year properties
-- TypeScript-powered IntelliSense in VS Code
-- Runtime type hints and error detection
+### TypeScript Type Safety
+Full TypeScript compilation provides comprehensive type safety:
+- Strict TypeScript interfaces for Song data structure
+- Union types for sort columns and directions
+- Null safety with strict checking enabled
+- Compile-time error detection and prevention
 
 ### Professional Standards
 Follows industry best practices:
@@ -101,8 +121,40 @@ Follows industry best practices:
 
 ## Browser Support
 
-Modern browsers which support ES6 modules
+Modern browsers which support ES6 modules and TypeScript compilation
 
+## Professional Development & Debugging
+
+### TypeScript Development Workflow
+
+**Development Commands:**
+```bash
+npm run dev          # Development server with live compilation
+npm run build        # Production build
+npm run build:watch  # Watch mode compilation
+npm run type-check   # Type checking only
+npm run serve        # Serve built application
+```
+
+### Debugging Setup
+
+**VS Code Configuration:**
+- Install TypeScript and ES6 extensions
+- Enable source maps for debugging
+- Use integrated terminal for build commands
+
+**Browser Debugging:**
+- **Source Maps**: Debug TypeScript directly in DevTools
+- **Console**: Full type support in development
+- **Breakpoints**: Set in original TypeScript source files
+- **Network**: Monitor URL persistence and routing
+
+**Professional Debug Workflow:**
+1. `npm run build:watch` - Start TypeScript compilation
+2. `npm run serve` - Start development server  
+3. Open browser DevTools with source maps enabled
+4. Set breakpoints in TypeScript source files
+5. Use TypeScript language server for real-time error checking
 
 ## Development
 
