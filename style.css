@@ -21,6 +21,15 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Heading link styling */
+h1 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+
+
 /* Data table layout */
 table {
     width: 100%;
@@ -34,6 +43,7 @@ th, td {
     padding: 8px; 
     text-align: left;
 }
+
 
 /* Table header styling */
 th {
@@ -55,8 +65,8 @@ th.sortable:hover {
 
 /* Focus indicators for keyboard navigation accessibility */
 th.sortable:focus {
-    outline: 2px solid #007acc;
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: inset 0 0 0 2px #007acc;
     background-color: #e9ecef;
 }
 
@@ -66,6 +76,17 @@ th.sortable:focus {
     font-size: 1.2em;
     opacity: 0.7;
     font-weight: normal;
+    min-width: 12px;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Year column specific styling - prevent width changes when sorting */
+th:nth-child(3), td:nth-child(3) {
+    text-align: center;
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
 }
 
 /* Screen reader only content - visible to assistive technology but hidden visually */

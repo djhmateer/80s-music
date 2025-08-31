@@ -41,34 +41,65 @@ The project follows strict coding standards defined in `.claude-rules`:
 - `jsconfig.json:4-8` - TypeScript compiler options for JavaScript type checking
 - `.claude-rules:55-119` - Comprehensive JavaScript/TypeScript coding standards
 
-## Current Tasks
+## Completed Tasks
 
-### Accessibility Improvements (feat/a11y-sorting branch)
+### ✅ Accessibility Improvements (completed in feat/a11y-sorting branch)
 
-The following accessibility enhancements are needed for WCAG 2.1 AA compliance:
+Full WCAG 2.1 AA compliance implemented for sortable table functionality:
 
 **ARIA Attributes & Roles:**
-- [x] Add `role="button"` to sortable table headers (`index.html:39-47`)
-- [x] Implement `aria-sort="ascending|descending|none"` states (`script.js:51-69`)
-- [x] Add `tabindex="0"` to make sortable headers keyboard focusable (`index.html:39-47`)
-- [x] Add `aria-live="polite"` region for announcing sort changes (`index.html`)
+- [x] Add `role="button"` to sortable table headers (`index.html:47-54`)
+- [x] Implement `aria-sort="ascending|descending|none"` states (`script.js:51-79`)
+- [x] Add `tabindex="0"` to make sortable headers keyboard focusable (`index.html:50-51`)
+- [x] Add `aria-live="polite"` region for announcing sort changes (`index.html:22-28`)
 
 **Keyboard Navigation:**
-- [x] Implement keyboard event handlers for Enter and Space keys (`script.js:80-88`)
-- [x] Add CSS focus indicators for keyboard navigation visibility (`style.css:44-62`)
+- [x] Implement keyboard event handlers for Enter and Space keys (`script.js:97-105`)
+- [x] Add CSS focus indicators for keyboard navigation visibility (`style.css:56-61`)
 
 **JavaScript Enhancements:**
-- [x] Update JavaScript to manage ARIA sort states dynamically (`script.js:51-69`)
-- [x] Add live region announcements for sort changes (`script.js:51-69`)
+- [x] Update JavaScript to manage ARIA sort states dynamically (`script.js:65-71`)
+- [x] Add live region announcements for sort changes (`script.js:75-76`)
 
-**Testing:**
-- [ ] Test accessibility with screen reader and keyboard-only navigation
+## Current Tasks
+
+### Multi-Column Sorting with URL Persistence (feat/sorting-concepts branch)
+
+The following features implement comprehensive sorting across all table columns with URL persistence:
+
+**URL Persistence:**
+- [ ] Design URL structure with query parameters (`?sort=name&order=desc`)
+- [ ] Implement URL reading on page load to restore sort state
+- [ ] Update URL when sort changes (without page refresh)
+- [ ] Handle browser back/forward navigation with sort states
+- [ ] Add deep linking support for shareable sorted URLs
+
+**Multi-Column Sorting:**
+- [ ] Extend sortable functionality to Artist column
+- [ ] Extend sortable functionality to Year column (numeric sorting)
+- [ ] Implement independent column sorting (one active at a time)
+- [ ] Add visual indicators showing which column is actively sorted
+- [ ] Handle data type differences (text vs numeric sorting)
+
+**Accessibility & Keyboard Navigation:**
+- [ ] Apply ARIA button role and attributes to all sortable headers
+- [ ] Implement keyboard navigation (Tab, Enter, Space) for all columns
+- [ ] Add focus indicators for all sortable headers
+- [ ] Update live region announcements for all columns
+- [ ] Test complete keyboard navigation across all columns
+
+**User Experience Enhancements:**
+- [ ] Add default sort state on initial page load
+- [ ] Implement sort direction cycling (none → asc → desc → none)
+- [ ] Add visual sort direction indicators (arrows) for all columns
+- [ ] Handle edge cases (empty data, special characters)
+- [ ] Optimize performance for sorting operations
 
 **File Locations:**
-- HTML structure: `index.html` lines 39-47 (sortable `<th>` element)
-- Event handling: `script.js` lines 80-88 (addEventListener setup)
-- Sort function: `script.js` lines 51-69 (sortBySong function)
-- Styling: `style.css` lines 44-62 (sortable header styles)
+- HTML structure: `index.html` lines 47-61 (all table headers)
+- Sort logic: `script.js` sortBySong function (extend to generic)
+- URL handling: New URL parsing and updating functions needed
+- Styling: `style.css` sortable header styles (apply to all columns)
 
 ## Current State
 

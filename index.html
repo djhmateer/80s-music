@@ -15,7 +15,7 @@
   </head>
   <body>
     <header>
-      <h1>80s Music</h1>
+      <h1><a href="/">80s Music</a></h1>
     </header>
 
     <main>
@@ -56,8 +56,28 @@
             <!-- Empty span for displaying sort direction arrows (↑↓) via JavaScript -->
             <span class="sort-indicator"></span>
           </th>
-          <th>Artist</th>
-          <th>Year</th>
+          <th
+            id="sort-artist-header"
+            class="sortable"
+            role="button"
+            tabindex="0"
+            aria-label="Sort by artist name"
+            aria-sort="none"
+            title="Click to sort by artist name - displays the performing artist or band">
+            Artist
+            <span class="sort-indicator"></span>
+          </th>
+          <th
+            id="sort-year-header"
+            class="sortable"
+            role="button"
+            tabindex="0"
+            aria-label="Sort by release year"
+            aria-sort="none"
+            title="Click to sort by release year - displays the year the song was released">
+            Year
+            <span class="sort-indicator"></span>
+          </th>
         </tr>
       </thead>
       <!-- Table body populated dynamically by JavaScript -->
