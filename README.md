@@ -2,13 +2,15 @@
 
 A simple, professional web application that displays a sortable table of classic 80s music tracks. Built with vanilla JavaScript using modern ES6 modules and professional development practices.
 
+This project demonstrates production-grade coding practices and serves as a practical example of professional web development techniques. For more background on the project's intent and coding philosophy, see: [Production Grade Code](https://davemateer.com/2025/08/30/production-grade-code).
+
 ## Features
 
-- 🎵 **Sortable Music Table**: Click column headers to sort songs alphabetically
-- 📱 **Responsive Design**: Works on desktop and mobile devices
-- ♿ **Accessibility**: Screen reader support with ARIA labels and semantic HTML
-- 🎯 **Modern JavaScript**: ES6 modules, type safety with JSDoc, professional code organization
-- ⚡ **Performance**: Lightweight vanilla JavaScript with no external dependencies
+- **Sortable Music Table**: Click column headers to sort songs alphabetically
+- **Responsive Design**: Works on desktop and mobile devices
+- **Accessibility**: Screen reader support with ARIA labels and semantic HTML
+- **Modern JavaScript**: ES6 modules, type safety with JSDoc, professional code organization
+- **Performance**: Lightweight vanilla JavaScript with no external dependencies
 
 ## Demo
 
@@ -41,11 +43,6 @@ php -S localhost:8000
 **Option B - VS Code Live Server:**
 - Install "Live Server" extension
 - Right-click `index.html` → "Open with Live Server"
-
-**Option C - Direct File Access (Limited):**
-- Some browsers allow direct file access with modules
-- Chrome: Start with `--allow-file-access-from-files` flag
-- Not recommended for development
 
 3. Open `http://localhost:8000` in your browser
 
@@ -150,4 +147,4 @@ This project is for educational purposes and demonstrates modern web development
 
 ---
 
-Built with ❤️ using vanilla JavaScript and modern web standards.
+Built using vanilla JavaScript and modern web standards.
