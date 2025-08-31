@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Character encoding - ensures proper text rendering and prevents garbled characters -->
     <meta charset="UTF-8" />
     <!-- Responsive viewport meta tag - prevents mobile browsers from auto-zooming and ensures proper scaling -->
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SEO description - appears in search engine results and social media previews -->
+    <meta name="description" content="Interactive sortable table of classic 80s music tracks with artist and year information" />
     <title>Music of the 80s</title>
     <!-- Modern SVG favicon for crisp display at all sizes -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>80s Music</h1>
+    <header>
+      <h1>80s Music</h1>
+    </header>
 
-    <!-- Data table for displaying songs collection -->
-    <table id="songs-table">
+    <main>
+      <!-- Data table for displaying songs collection -->
+      <table id="songs-table">
       <thead>
         <tr>
           <!--
@@ -45,16 +52,14 @@
       <!-- Table body populated dynamically by JavaScript -->
       <tbody id="songs-tbody"></tbody>
     </table>
+    </main>
 
-    <!--
-      ES6 module script - enables import/export syntax and module scoping
-      type="module" creates isolated scope preventing global pollution
-      onerror handles CORS failures when opening HTML file directly from filesystem
-    -->
-    <script
-      type="module"
-      src="script.js"
-      onerror="document.querySelector('h1').textContent='CORS Policy ERROR - Use a Webserver eg Live Server in VSCode'"
-    ></script>
+    <footer>
+      <p>© 2025 Dave Mateer</p>
+    </footer>
+
+    <!-- ES6 module script - enables import/export syntax and module scoping
+         type="module" creates isolated scope preventing global pollution -->
+    <script type="module" src="script.js"></script>
   </body>
 </html>
