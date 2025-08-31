@@ -51,15 +51,15 @@ The following accessibility enhancements are needed for WCAG 2.1 AA compliance:
 - [x] Add `role="button"` to sortable table headers (`index.html:39-47`)
 - [x] Implement `aria-sort="ascending|descending|none"` states (`script.js:51-69`)
 - [x] Add `tabindex="0"` to make sortable headers keyboard focusable (`index.html:39-47`)
-- [ ] Add `aria-live="polite"` region for announcing sort changes (`index.html`)
+- [x] Add `aria-live="polite"` region for announcing sort changes (`index.html`)
 
 **Keyboard Navigation:**
 - [x] Implement keyboard event handlers for Enter and Space keys (`script.js:80-88`)
-- [ ] Add CSS focus indicators for keyboard navigation visibility (`style.css:44-62`)
+- [x] Add CSS focus indicators for keyboard navigation visibility (`style.css:44-62`)
 
 **JavaScript Enhancements:**
 - [x] Update JavaScript to manage ARIA sort states dynamically (`script.js:51-69`)
-- [ ] Add live region announcements for sort changes (`script.js:51-69`)
+- [x] Add live region announcements for sort changes (`script.js:51-69`)
 
 **Testing:**
 - [ ] Test accessibility with screen reader and keyboard-only navigation

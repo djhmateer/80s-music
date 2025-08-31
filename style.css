@@ -53,6 +53,13 @@ th.sortable:hover {
     background-color: #e9ecef;
 }
 
+/* Focus indicators for keyboard navigation accessibility */
+th.sortable:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+    background-color: #e9ecef;
+}
+
 /* Sort indicator styling */
 .sort-indicator {
     margin-left: 6px;
