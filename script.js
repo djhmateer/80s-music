@@ -52,8 +52,10 @@ function sortBySong() {
     const tbody = /** @type {HTMLElement} */ (document.getElementById('songs-tbody'));
     const sortIndicator = /** @type {HTMLElement} */ (document.querySelector('.sort-indicator'));
     const sortHeader = /** @type {HTMLElement} */ (document.getElementById('sort-song-header'));
+    const announcements = /** @type {HTMLElement} */ (document.getElementById('sort-announcements'));
     
     let sortedSongs;
+    let sortDescription;
     
     // Toggle between ascending and descending sort
     if (currentSortOrder === 'none' || currentSortOrder === 'desc') {
@@ -61,12 +63,17 @@ function sortBySong() {
         currentSortOrder = 'asc';
         sortIndicator.textContent = ' ↑';
         sortHeader.setAttribute('aria-sort', 'ascending');
+        sortDescription = 'Table sorted by song name in ascending order';
     } else {
         sortedSongs = [...songs].sort((a, b) => b.name.localeCompare(a.name));
         currentSortOrder = 'desc';
         sortIndicator.textContent = ' ↓';
         sortHeader.setAttribute('aria-sort', 'descending');
+        sortDescription = 'Table sorted by song name in descending order';
     }
+    
+    // Announce sort change to screen readers
+    announcements.textContent = sortDescription;
     
     renderTable(tbody, sortedSongs);
 }

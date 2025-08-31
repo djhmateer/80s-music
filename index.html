@@ -19,6 +19,14 @@
     </header>
 
     <main>
+      <!-- Screen reader live region for announcing sort changes -->
+      <div
+        id="sort-announcements" 
+        aria-live="polite" 
+        aria-atomic="true"
+        class="sr-only">
+      </div>
+      
       <!-- Data table for displaying songs collection -->
       <table id="songs-table">
       <thead>
