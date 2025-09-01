@@ -1,11 +1,8 @@
 /**
- * Song data module for the 80s music application.
+ * Reads songs.json and exports a strongly-typed array of 80s songs for display in the music table.
  * 
  * @remarks
- * Data source: songs.json - static JSON file.
- * 
- * Designed as a separate module to enable future API migration
- * without changing the consumer interface.
+ * Data flow: songs.json → Song[] type validation → exported songs array.
  * 
  * @see {@link script.ts} - Primary consumer for table rendering/sorting
  */
@@ -34,10 +31,10 @@ export interface Song {
 }
 
 /**
- * Exported song collection with compile-time structure validation.
+ * Strongly-typed array of Song objects imported from JSON.
  * 
  * @remarks
- * TypeScript catches structural mismatches:
+ * TypeScript catches structural mismatches at compile time:
  * - Missing field: "Property 'name' is missing in type..."
  * - Wrong field name: "Type '{ namex: string; }[]' is not assignable to type 'Song[]'"
  * - Wrong type: "Type 'string' is not assignable to type 'number'"
