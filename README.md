@@ -14,6 +14,8 @@ This project demonstrates production-grade coding practices and serves as a prac
 
 ## Demo
 
+TODO: 2025-09-01 Dave, publish this somewhere live
+
 Open `index.html` in a modern web browser to see the application in action. Click the "Song" column header to toggle between ascending and descending alphabetical sorting.
 
 ## Getting Started
@@ -39,30 +41,10 @@ Open `index.html` in a modern web browser to see the application in action. Clic
 
 3. **Development workflow** (Choose one)
 
-   **Option A - Development with live compilation:**
    ```bash
    npm run dev
    # Opens development server with TypeScript compilation
    # Visit http://localhost:3000
-   ```
-
-   **Option B - Manual build process:**
-   ```bash
-   # Build TypeScript to JavaScript
-   npm run build
-   
-   # Serve the application
-   npm run serve
-   # Visit http://localhost:3000
-   ```
-
-   **Option C - Watch mode compilation:**
-   ```bash
-   # Start TypeScript watch mode
-   npm run build:watch
-   
-   # In another terminal, serve files
-   npm run serve
    ```
 
 ## Project Structure
@@ -163,30 +145,40 @@ The project follows strict development standards defined in `.claude-rules`:
 
 - **Code Formatting**: All code follows Prettier standards for professional consistency
   - HTML: 2-space indentation, self-closing tags, multi-line attributes with `>` at end of last attribute line
-  - JavaScript: 2-space indentation, semicolons required, trailing commas, single quotes
+  - TypeScript: 2-space indentation, semicolons required, trailing commas, single quotes
   - CSS: 2-space indentation, consistent spacing, logical property ordering
   - Line length: 80-100 characters maximum
+
+- **TSDoc Documentation**: Professional commenting standards established throughout codebase
+  - Use TSDoc (`/** */`) for module headers, business logic explanations, and constraints
+  - Comments explain WHY and capture design decisions, never just restate code
+  - Include concrete examples with actual TypeScript error messages
+  - One example per comment for brevity and clarity
+  - Document architectural choices and future considerations
+
 - **Branch Naming**: `<type>/<short-description>` (e.g., `feat/sorting-functionality`)
 - **Commit Format**: Conventional Commits with descriptive messages
-- **Comments**: JSDoc for APIs, concise inline comments for context
 
 ### Adding New Songs
-To add more songs, edit `song-data.js` and add entries to the songs array following the JSDoc-defined Song interface:
+To add more songs, edit `src/songs.json` and add entries following the Song interface structure defined in `src/song-data.ts`:
 
-```javascript
+```json
 {
-  name: "Song Title",
-  artist: "Artist Name", 
-  year: 1985  // Must be 1980-1989
+  "name": "Song Title",
+  "artist": "Artist Name", 
+  "year": 1985
 }
 ```
+
+TypeScript will validate the structure at compile time and catch any missing fields or incorrect types.
 
 ## Contributing
 
 1. Follow the branch naming convention in `.claude-rules`
-2. Write descriptive commit messages
-3. Add JSDoc comments for new functions
-4. Test in multiple browsers
+2. Write descriptive commit messages following Conventional Commits
+3. Add TSDoc comments following the established standards in `.claude-rules`
+4. Test TypeScript compilation with `npm run type-check`
+5. Test in multiple browsers
 5. Maintain accessibility features
 
 ## License
