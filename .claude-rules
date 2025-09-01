@@ -98,15 +98,49 @@ All code must follow Prettier formatting standards for consistency and professio
 - No TODOs without owner and date: // TODO(bob, YYYY-MM-DD): message
 
 ## Commenting (TypeScript)
-- Use JSDoc /** ... */ for:
-  - Module/file headers summarizing purpose, invariants, and assumptions.
-  - Business logic explanation and examples (@example).
-  - Complex algorithms or non-obvious implementation decisions.
-- Avoid JSDoc @param/@returns in TypeScript (types are self-documenting).
-- Use // single-line comments only for brief local context.
-- Comments must explain WHY and business constraints, not re-state type information.
-- Link issues/PRDs in comments when relevant.
-- Prohibit redundant comments (that narrate obvious code or duplicate type info).
+
+- Use TSDoc (`/** ... */`) for:
+  - Module/file headers: purpose, invariants, assumptions, ownership, and dependencies
+  - Business logic explanation with concrete examples where helpful
+  - Complex algorithms or non-obvious implementation decisions
+  - Constraints that TypeScript cannot enforce (e.g., value ranges, business rules)
+
+- NEVER write comments that simply describe *what* the code does — the code shows that
+- Comments should explain *why*, capture constraints, trade-offs, or provide clarifying examples
+
+- Avoid redundant comments, such as:
+  - `// Import song data` above an import
+  - `/** Song structure */` above a Song interface
+  - Comments that restate variable or function names
+
+- Prefer `@example` in TSDoc for illustrative code snippets:
+  ```ts
+  /**
+   * @example
+   * ```ts
+   * import { songs } from './song-data';
+   * console.log(songs[0].artist); // "Michael Jackson"
+   * ```
+   */
+  ```
+
+- Include concrete examples in inline comments when they add clarity:
+  - Good: `// Must be 1980-1989 (not enforced by TypeScript)`
+  - Good: `// e.g., "Billie Jean", "Sweet Child O' Mine"`
+  - Good: `// E.g., renaming 'name' to 'namex' causes compile error`
+  - Bad: `// This is a string` or `// Import the data`
+
+- Use `//` single-line comments for:
+  - Brief constraints or examples: `// e.g., "Billie Jean"`
+  - TODOs with ownership: `// TODO(dave, 2025-01-15): Migrate to API`
+  - Temporary debugging notes (remove before commit)
+
+- When referencing potential errors, include the actual error message:
+  - Good: `// Causes: "Type '{ namex: string; }[]' is not assignable to type 'Song[]'"`
+  - Bad: `// This will cause a type error`
+
+- Avoid TSDoc @param/@returns in TypeScript (types are self-documenting)
+- Link issues/PRDs in comments when relevant
 
 ## Naming & Files
 - camelCase for vars/functions; PascalCase for classes/types; UPPER_SNAKE for const enums.

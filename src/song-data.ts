@@ -1,34 +1,23 @@
 /**
- * Song data structure for the 80s music application.
+ * Song data module for the 80s music application.
+ * Provides type definitions and data import from songs.json.
  * 
- * Defines the contract that all song objects must follow, ensuring
- * type safety throughout the application at compile time.
+ * Consumed by script.ts for rendering and sorting the music table.
+ * Currently loads static JSON data but designed as a separate module
+ * to enable future migration to API calls without changing the interface.
  */
+
 export interface Song {
-  /** Song title - should be non-empty but TypeScript doesn't enforce this constraint */
-  name: string;
-  /** Artist or band name - should be non-empty but TypeScript doesn't enforce this constraint */
-  artist: string;
-  /** Release year - should be 1980-1989 inclusive but TypeScript only enforces number type */
-  year: number;
+  name: string;    // e.g., "Billie Jean"
+  artist: string;  // e.g., "Michael Jackson"  
+  year: number;    // Must be 1980-1989 (not enforced by TypeScript)
 }
 
-/**
- * Imports song data using JSON module import with type assertion.
- * 
- * The `with { type: "json" }` syntax is required by modern browsers for security -
- * it explicitly declares this import as JSON data, not executable code.
- * This prevents potential security vulnerabilities from malicious JSON files.
- */
 import songData from './songs.json' with { type: "json" };
 
 /**
- * Typed array of 80s songs exported for use throughout the application.
- * 
- * TypeScript performs compile-time validation that the JSON structure matches
- * the Song interface, but does NOT validate the actual constraint values
- * (like year range 1980-1989 or non-empty strings).
- * 
- * Runtime validation would be needed to enforce the documented constraints.
+ * TypeScript validates JSON structure at compile time.
+ * E.g., renaming 'name' to 'namex' in songs.json causes: "Type '{ namex: string; }[]' is not assignable to type 'Song[]'"
+ * Runtime validation would be needed for business rules like year range 1980-1989.
  */
 export const songs: Song[] = songData;
