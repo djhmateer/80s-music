@@ -125,9 +125,11 @@ All code must follow Prettier formatting standards for consistency and professio
   ```
 
 - Include concrete examples in inline comments when they add clarity:
+  - Use ONE example per comment for brevity: `// e.g., "Billie Jean"`
   - Good: `// Must be 1980-1989 (not enforced by TypeScript)`
-  - Good: `// e.g., "Billie Jean", "Sweet Child O' Mine"`
+  - Good: `// e.g., "Billie Jean"`
   - Good: `// E.g., renaming 'name' to 'namex' causes compile error`
+  - Bad: `// e.g., "Billie Jean", "Sweet Child O' Mine", "Thriller"` (too many)
   - Bad: `// This is a string` or `// Import the data`
 
 - Use `//` single-line comments for:
