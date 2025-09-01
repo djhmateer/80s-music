@@ -149,12 +149,14 @@ The project follows strict development standards defined in `.claude-rules`:
   - CSS: 2-space indentation, consistent spacing, logical property ordering
   - Line length: 80-100 characters maximum
 
-- **TSDoc Documentation**: Professional commenting standards established throughout codebase
-  - Use TSDoc (`/** */`) for module headers, business logic explanations, and constraints
-  - Comments explain WHY and capture design decisions, never just restate code
-  - Include concrete examples with actual TypeScript error messages
+- **TSDoc Documentation**: Professional commenting standards based on song-data.ts exemplar
+  - Module-level documentation starts with action verbs describing what the module DOES
+  - Use proper TSDoc tags: `@remarks` for design decisions, `@see` for cross-references, `@beta` for future considerations
+  - Property comments placed BEFORE the property with inline examples using `@example` tag
+  - Comments explain WHY and design decisions, NEVER describe WHAT the code does
+  - Include concrete examples with actual values and TypeScript error messages
   - One example per comment for brevity and clarity
-  - Document architectural choices and future considerations
+  - Document business constraints that TypeScript cannot enforce at compile time
 
 - **Branch Naming**: `<type>/<short-description>` (e.g., `feat/sorting-functionality`)
 - **Commit Format**: Conventional Commits with descriptive messages
