@@ -2,14 +2,15 @@
  * Song data module for the 80s music application.
  * 
  * @remarks
- * Primary consumer: script.ts (for table rendering/sorting).
- * Data source: songs.json (static JSON file).
+ * Data source: songs.json - static JSON file.
  * 
  * Designed as a separate module to enable future API migration
  * without changing the consumer interface.
  * 
- * @see {@link script.ts} - Primary consumer
+ * @see {@link script.ts} - Primary consumer for table rendering/sorting
  */
+
+import songData from './songs.json' with { type: "json" };
 
 /**
  * Shape contract for song objects with compile-time validation.
@@ -26,15 +27,11 @@
 export interface Song {
   /** Song title @example "Billie Jean" */
   name: string;
-  
   /** Artist or band name @example "Michael Jackson" */
   artist: string;
-  
   /** Release year (1980-1989, not enforced at compile time) */
   year: number;
 }
-
-import songData from './songs.json' with { type: "json" };
 
 /**
  * Exported song collection with compile-time structure validation.
